@@ -1,0 +1,38 @@
+/* CSS Reset */
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Page body */
+body {
+    background-color: antiquewhite;
+}
+
+/* Header */
+.header {
+    font-family: sans-serif;
+}
+
+/* Gold Descripition */
+.gold_parameters {
+    font-family: sans-serif;
+}
+
+/* Cards */
+.cards {
+    margin: 10px 0px;
+    background-color: gray;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Find gold buttons */
+.find_gold_btns{
+    font-family: sans-serif;
+    background-color: gold;
+    border: 1px solid black;
+    padding: 5px;
+    box-shadow: 3px 3px black;
+}
