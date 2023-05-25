@@ -37,6 +37,17 @@ body {
     box-shadow: 3px 3px black;
 }
 
+.activity {
+    border: 2px solid black;
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.btn {
+    border: 2px solid black;
+    box-shadow: 3px 3px black;
+}
+
 h4 {
     margin: 10px 0px;
 }

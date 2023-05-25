@@ -47,9 +47,9 @@
                 </form>
             </div>
         </div>
-        <a href="/reset" class="find_gold_btns">Reset</a>
-        <div class="activity">
-            <h4>Activities:</h4>
+        <a href="/reset" class="btn btn-warning col-12">Start Over</a>
+        <h4>Activities:</h4>
+        <div class="activity col-12">
             {% for log in session.activity_log %}
                 <p>{{log}}</p>
             {% endfor %}

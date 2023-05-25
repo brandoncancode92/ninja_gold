@@ -10,40 +10,36 @@ app.secret_key = "Loki"
 # Root route.
 @app.route('/')
 def index():
-    if "gold" and 'activity_log' not in session:
+    if 'gold' and 'activity_log' not in session:
         session['gold'] = 0
         session['activity_log'] = []
     return render_template("index.html")
 
 # Route for processing gold.
-@app.route('/process_gold', methods=["POST"])
+@app.route('/process_gold', methods=["POST"],)
 def process_gold():
     if 'farm' == request.form['property']:
-        gold = random.randint(10,20)
-        session['gold'] += gold
-        session['activity_log'].append(f"You earned {gold} gold nuggets!")
+        gold_won = random.randint(10,20)
+        session['gold'] += gold_won
+        session['activity_log'].append(f"You earned {gold_won} gold nuggets!")
         return redirect('/')
 
     if 'cave' == request.form['property']:
-        gold = random.randint(5,10)
-        session['gold'] += gold
-        session['activity_log'].append(f"You earned {gold} gold nuggets!")
+        gold_won = random.randint(5,10)
+        session['gold'] += gold_won
+        session['activity_log'].append(f"You earned {gold_won} gold nuggets!")
         return redirect('/')
 
     if 'house' == request.form['property']:
-        gold = random.randint(2,5)
-        session['gold'] += gold
-        session['activity_log'].append(f"You earned {gold} gold nuggets!")
+        gold_won = random.randint(2,5)
+        session['gold'] += gold_won
+        session['activity_log'].append(f"You earned {gold_won} gold nuggets!")
         return redirect('/')
 
     if 'casino' == request.form['property']:
-        gold = random.randint(-50,50)
-        if gold < 0:
-            session['gold'] -= gold
-            session['activity_log'].append(f"You lost {gold} gold nuggets!")
-        else:
-            session['gold'] += gold
-            session['activity_log'].append(f"You earned {gold} gold nuggets!")
+        gold_won = random.randint(-50,50)
+        session['gold'] += gold_won
+        session['activity_log'].append(f"You earned {gold_won} gold nuggets!")
         return redirect('/')
 
 
