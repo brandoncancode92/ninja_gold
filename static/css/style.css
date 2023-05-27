@@ -37,17 +37,20 @@ body {
     box-shadow: 3px 3px black;
 }
 
-.activity {
-    border: 2px solid black;
-    height: 200px;
-    overflow-y: scroll;
-}
-
-.btn {
+/* Reset button */
+.reset_btn {
     border: 2px solid black;
     box-shadow: 3px 3px black;
 }
 
+/* Activites title */
 h4 {
     margin: 10px 0px;
+}
+
+/* Activity response box */
+.activity {
+    border: 2px solid black;
+    height: 200px;
+    overflow-y: scroll;
 }
