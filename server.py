@@ -38,8 +38,12 @@ def process_gold():
 
     if 'casino' == request.form['property']:
         gold_won = random.randint(-50,50)
-        session['gold'] += gold_won
-        session['activity_log'].append(f"You earned {gold_won} gold nuggets!")
+        if gold_won < 0:
+            session['activity_log'].append(f"You lost {gold_won} gold nuggets!")
+            session['gold'] += gold_won
+        else:
+            session['gold'] += gold_won
+            session['activity_log'].append(f"You earned {gold_won} gold nuggets!")
         return redirect('/')
 
 
@@ -52,3 +56,7 @@ def reset():
 
 if __name__=='__main__':
     app.run(debug=True, host='localhost', port=5001)
+
+# change the color of the activity log based on positive or negative gold earned
+# limit the number of moves to get a certain score
+# list the activity log in descending order

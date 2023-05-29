@@ -38,7 +38,7 @@ body {
 }
 
 /* Reset button */
-.reset_btn {
+.btn {
     border: 2px solid black;
     box-shadow: 3px 3px black;
 }
@@ -53,4 +53,8 @@ h4 {
     border: 2px solid black;
     height: 200px;
     overflow-y: scroll;
+}
+
+.won {
+    color: green;
 }
