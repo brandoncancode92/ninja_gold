@@ -55,11 +55,11 @@ def process_gold():
 
 
 # Route for reseting session/game
-@app.route('/reset') # may need post method
+@app.route('/reset')
 def reset():
     session.clear()
     return redirect('/')
-# Add a button to actually clear in the HTML
+
 
 if __name__=='__main__':
     app.run(debug=True, host='localhost', port=5001)
