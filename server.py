@@ -20,34 +20,36 @@ def index():
 # Route for processing gold and number of moves.
 @app.route('/process_gold', methods=["POST"])
 def process_gold():
-    # logic for winning the game based on moves and score (needs work)
-    moves = 0
-    if session['gold'] > 200 and session['total_moves'] <=15:
-        session['activity_log'].append("Congratulations, you've won!")
 
     # Adds gold earned and number of moves to session
     if 'farm' == request.form['property'] or 'cave' == request.form['property'] or 'house' == request.form['property']:
         session['gold_won'] = random.randint(10,20)
-        moves += 1
         session['gold'] += session['gold_won']
-        session['total_moves'] += moves
         session['activity_log'].append(f"You earned {session['gold_won']} gold nuggets!")
         return redirect('/')
 
     # Adds gold earned/lost and number of moves to session
     if 'casino' == request.form['property']:
         session['gold_won'] = random.randint(-50,50)
-        moves += 1
         if session['gold_won'] < 0:
             session['gold'] += session['gold_won']
-            session['total_moves'] += moves
             session['activity_log'].append(f"You lost {session['gold_won']} gold nuggets!")
         else:
             session['gold'] += session['gold_won']
-            session['total_moves'] += moves
             session['activity_log'].append(f"You earned {session['gold_won']} gold nuggets!")
         return redirect('/')
 
+# Route for keeping track of the moves and winning the game
+@app.route('/win_game')
+def win_game():
+    moves = 0
+    if 'farm' == request.form['property'] or 'cave' == request.form['property'] or 'house' == request.form['property'] or 'casino' == request.form['property']:
+        session['total_moves'] += moves
+        moves += 1
+
+    if session['gold'] > 200 and session['total_moves'] <=15:
+        session['activity_log'].append("Congratulations, you've won!")
+    return redirect('/')
 
 # Route for reseting session/game
 @app.route('/reset')
