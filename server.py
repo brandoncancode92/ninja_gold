@@ -40,15 +40,25 @@ def process_gold():
         return redirect('/')
 
 # Route for keeping track of the moves and winning the game
-@app.route('/win_game')
+@app.route('/win_game', methods=["POST"])
 def win_game():
     moves = 0
     if 'farm' == request.form['property'] or 'cave' == request.form['property'] or 'house' == request.form['property'] or 'casino' == request.form['property']:
-        session['total_moves'] += moves
         moves += 1
+        session['total_moves'] += moves
 
-    if session['gold'] > 200 and session['total_moves'] <=15:
+    if session['gold'] < 200 and session['total_moves'] <=15:
+        pass
+
+    elif session['gold'] > 200 and session['total_moves'] <=15:
         session['activity_log'].append("Congratulations, you've won!")
+
+    elif session['gold'] > 200 and session['total_moves'] > 15:
+        session['actiivity_log'].append("Game Over")
+
+    else:
+        session['gold'] < 200 and session['total_moves'] >=16
+        session['activity_log'].append("Game Over")
     return redirect('/')
 
 # Route for reseting session/game
