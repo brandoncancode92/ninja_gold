@@ -17,7 +17,7 @@
         <!-- Main Row -->
         <div class="d-flex justify-content-between">
             <!-- Cards -->
-            <div class="cards">
+            <div class="cards col-2">
                 <h3>Farm</h3>
                 <p class="gold_parameters">(earns 10-20 golds)</p>
                 <form action="/process_gold" method="post">
@@ -52,13 +52,19 @@
             <!-- End of Cards -->
         </div>
         <!-- End of Main Row -->
-        <a href="/reset" class="btn btn-warning col-12">Start Over</a>
+        <a href="/reset" class="btn btn-warning d-flex col-6 justify-content-center">Play Again</a>
         <h4>Activities:</h4>
+        <!-- Activity Log -->
         <div class="activity col-12">
-            {% for log in session.activity_log %}
-                <p>{{log}}</p>
+            {% for log in session.activity_log | reverse %}
+                {% if session['gold'] > 0 %}
+                    <div class="won">{{log}}</div>
+                {% else %}
+                    <div class="lost">{{log}}</div>
+                {% endif %}
             {% endfor %}
         </div>
+        <!-- End of Activity Log -->
     </div>
     <!-- End of Container -->
 </body>

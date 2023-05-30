@@ -37,10 +37,12 @@ body {
     box-shadow: 3px 3px black;
 }
 
-/* Reset button */
+/* Play again button */
 .btn {
+    margin-top: 20px;
     border: 2px solid black;
     box-shadow: 3px 3px black;
+    font-size: larger;
 }
 
 /* Activites title */
@@ -55,6 +57,12 @@ h4 {
     overflow-y: scroll;
 }
 
+/* Displays green text in activity log */
 .won {
     color: green;
+}
+
+/* Displays red text in activity log */
+.lost {
+    color: red;
 }
