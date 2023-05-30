@@ -57,7 +57,7 @@
         <!-- Activity Log -->
         <div class="activity col-12">
             {% for log in session.activity_log | reverse %}
-                {% if session['gold'] > 0 %}
+                {% if  session['gold_won'] > 0 %}
                     <div class="won">{{log}}</div>
                 {% else %}
                     <div class="lost">{{log}}</div>
