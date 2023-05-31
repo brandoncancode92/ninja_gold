@@ -10,10 +10,10 @@ app.secret_key = "Loki"
 # Root route.
 @app.route('/')
 def index():
-    if 'gold' and 'gold_won' and 'total_moves' not in session:
+    if 'gold' and 'total_moves' and 'gold_won' not in session:
         session['gold'] = 0
-        session['gold_won'] = []
         session['total_moves'] = 0
+        session['gold_won'] = []
     return render_template("index.html")
 
 # Route for processing gold and number of moves.
@@ -42,16 +42,26 @@ def process_gold():
 # Route for keeping track of the moves and winning the game.
 @app.route('/win_game', methods=["POST"])
 def win_game():
-    moves = 0
+    winning_gold = 500
+    winning_moves = 15
+    moves = 1
     if 'farm' == request.form['property'] or 'cave' == request.form['property'] or 'house' == request.form['property'] or 'casino' == request.form['property']:
-        moves += 1
         session['total_moves'] += moves
 
-    if session['gold'] >= 500 and session['total_moves'] <= 15:
-        session['activity_log'].append("Congratulations, you've won!")
+    if session['gold'] >= winning_gold and session['total_moves'] <= winning_moves:
+        pass # Winner
         return redirect('/')
+
+    elif session['gold'] >= winning_gold and session['total_moves'] >= winning_moves:
+        pass # Game Over
+
+    elif session['gold'] <= winning_gold and session['total_moves'] >= winning_moves:
+        pass # Game Over
+
+    elif session['gold'] <= winning_gold and session['total_moves'] <= winning_moves:
+        pass # Continue Playing
     else:
-        session['activity_log'].append("Game Over")
+        pass
         return redirect('/')
 
 # Route for reseting session/game.
