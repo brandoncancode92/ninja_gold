@@ -14,32 +14,36 @@ def index():
         session['gold'] = 0
         session['activity_log'] = []
         session['total_moves'] = 0
-        session['gold_won'] = 0
+        session['gold_won'] = []
     return render_template("index.html")
 
 # Route for processing gold and number of moves.
 @app.route('/process_gold', methods=["POST"])
 def process_gold():
-
-    # Adds gold earned and number of moves to session
-    if 'farm' == request.form['property'] or 'cave' == request.form['property'] or 'house' == request.form['property']:
-        session['gold_won'] = random.randint(10,20)
-        session['gold'] += session['gold_won']
-        session['activity_log'].append(f"You earned {session['gold_won']} gold nuggets!")
+    # Adds gold earned to session
+    if request.form['property'] in ('farm', 'cave', 'house'):
+        winnings = random.randint(10, 20)
+        session['gold'] += winnings
+        session['gold_won'].append(winnings)
+        # session['activity_log'].append(f"You earned {winnings} gold nuggets!")
         return redirect('/')
 
-    # Adds gold earned/lost and number of moves to session
-    if 'casino' == request.form['property']:
-        session['gold_won'] = random.randint(-50,50)
-        if session['gold_won'] < 0:
-            session['gold'] += session['gold_won']
-            session['activity_log'].append(f"You lost {session['gold_won']} gold nuggets!")
+    # Adds gold earned/lost to session
+    elif request.form['property'] == 'casino':
+        winnings = random.randint(-50, 50)
+        if winnings < 0:
+            session['gold'] += winnings
+            session['gold_won'].append(winnings)
+            # session['activity_log'].append(f"You lost {winnings} gold nuggets!")
         else:
-            session['gold'] += session['gold_won']
-            session['activity_log'].append(f"You earned {session['gold_won']} gold nuggets!")
+            session['gold'] += winnings
+            session['gold_won'].append(winnings)
+            # session['activity_log'].append(f"You earned {winnings} gold nuggets!")
         return redirect('/')
 
-# Route for keeping track of the moves and winning the game
+
+
+# Route for keeping track of the moves and winning the game.
 @app.route('/win_game', methods=["POST"])
 def win_game():
     moves = 0
@@ -47,21 +51,14 @@ def win_game():
         moves += 1
         session['total_moves'] += moves
 
-    if session['gold'] < 200 and session['total_moves'] <=15:
-        pass
-
-    elif session['gold'] > 200 and session['total_moves'] <=15:
+    if session['gold'] >= 500 and session['total_moves'] <= 15:
         session['activity_log'].append("Congratulations, you've won!")
-
-    elif session['gold'] > 200 and session['total_moves'] > 15:
-        session['actiivity_log'].append("Game Over")
-
+        return redirect('/')
     else:
-        session['gold'] < 200 and session['total_moves'] >=16
         session['activity_log'].append("Game Over")
-    return redirect('/')
+        return redirect('/')
 
-# Route for reseting session/game
+# Route for reseting session/game.
 @app.route('/reset')
 def reset():
     session.clear()
@@ -71,6 +68,6 @@ def reset():
 if __name__=='__main__':
     app.run(debug=True, host='localhost', port=5001)
 
-# change the color of the activity log based on positive or negative gold earned(Done)
-# list the activity log in descending order(Done)
-# limit the number of moves and set the score that has to be reached to win the game
+# change the color of the activity log based on positive or negative gold earned(Done).
+# list the activity log in descending order(Done).
+# limit the number of moves and set the score that has to be reached to win the game.
