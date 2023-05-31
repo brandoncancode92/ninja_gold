@@ -10,11 +10,10 @@ app.secret_key = "Loki"
 # Root route.
 @app.route('/')
 def index():
-    if 'gold' and 'activity_log' and 'total_moves' and 'gold_won' not in session:
+    if 'gold' and 'gold_won' and 'total_moves' not in session:
         session['gold'] = 0
-        session['activity_log'] = []
-        session['total_moves'] = 0
         session['gold_won'] = []
+        session['total_moves'] = 0
     return render_template("index.html")
 
 # Route for processing gold and number of moves.
@@ -25,7 +24,6 @@ def process_gold():
         winnings = random.randint(10, 20)
         session['gold'] += winnings
         session['gold_won'].append(winnings)
-        # session['activity_log'].append(f"You earned {winnings} gold nuggets!")
         return redirect('/')
 
     # Adds gold earned/lost to session
@@ -34,11 +32,9 @@ def process_gold():
         if winnings < 0:
             session['gold'] += winnings
             session['gold_won'].append(winnings)
-            # session['activity_log'].append(f"You lost {winnings} gold nuggets!")
         else:
             session['gold'] += winnings
             session['gold_won'].append(winnings)
-            # session['activity_log'].append(f"You earned {winnings} gold nuggets!")
         return redirect('/')
 
 

@@ -59,12 +59,10 @@
         <div class="activity col-12">
             {% for gold in session.gold_won | reverse %}
                 {% if gold >= 0 %}
-                    <div class="won">{{gold}}</div>
+                    <div class="won">You earned {{gold}} gold nuggets!</div>
                 {% else %}
-                    <div class="lost">{{gold}}</div>
+                    <div class="lost">You lost {{gold}} gold nuggets!</div>
                 {% endif %}
-            {% endfor %}
-            {% for log in session.activity_log %}
             {% endfor %}
         </div>
         <!-- End of Activity Log -->
