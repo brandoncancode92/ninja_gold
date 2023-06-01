@@ -6,12 +6,20 @@
 
 /* Page body */
 body {
-    background-color: antiquewhite;
+    background-color: black;
 }
 
 /* Header */
 .header {
+    margin: 20px 0px;
     font-family: sans-serif;
+    color: red;
+}
+
+/* Counters */
+.gold_counter,
+.moves_counter {
+    color: teal;
 }
 
 /* Gold Descripition */
@@ -22,47 +30,52 @@ body {
 /* Cards */
 .cards {
     margin: 10px 0px;
-    background-color: gray;
-    border: 2px solid black;
     padding: 10px;
     text-align: center;
+    background-color: gray;
+    border: 2px solid black;
 }
 
 /* Find gold buttons */
 .find_gold_btns{
-    font-family: sans-serif;
-    background-color: gold;
-    border: 1px solid black;
+    font-size: large;
     padding: 5px;
+    background-color: rebeccapurple;
+    border: 2px solid black;
     box-shadow: 3px 3px black;
+    font-family: sans-serif;
 }
 
 /* Play again button */
 .btn {
+    font-size: larger;
     margin-top: 20px;
     border: 2px solid black;
     box-shadow: 3px 3px black;
-    font-size: larger;
 }
 
-/* Activites title */
+/* Activites header */
 h4 {
     margin: 10px 0px;
+    color: teal;
 }
 
 /* Activity response box */
 .activity {
-    border: 2px solid black;
     height: 200px;
     overflow-y: scroll;
+    background-color: white;
+    border: 2px solid gray;
 }
 
 /* Displays green text in activity log */
 .won {
-    color: green;
+    font-size: x-large;
+    color: teal;
 }
 
 /* Displays red text in activity log */
 .lost {
+    font-size: x-large;
     color: red;
 }
