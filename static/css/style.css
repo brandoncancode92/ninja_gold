@@ -79,3 +79,9 @@ h4 {
     font-size: x-large;
     color: red;
 }
+
+.game_rules,
+.game_rules_text {
+    font-family: sans-serif;
+    color: teal;
+}

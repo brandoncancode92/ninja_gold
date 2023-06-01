@@ -56,13 +56,13 @@
         <!-- End of Main Row -->
         <!-- Container for Winning/Losing and reseting the game -->
         <div class="pop_up_contianer col-12">
-            {% if session['gold'] > 225 and session['total_moves'] >= 1 %}
+            {% if session['gold'] >= 225 and session['total_moves'] >= 1 %}
                 <a href="/reset" class="btn btn-success d-flex col-6 justify-content-center">Winner !!! Play Again?</a>
             {% endif %}
             {% if session['gold'] < 0 %}
                 <a href="/reset" class="btn btn-danger d-flex col-6 justify-content-center">Game Over !!! Play Again?</a>
             {% endif %}
-            {% if session['gold'] > 225 and session['total_moves'] <= 0 %}
+            {% if session['gold'] >= 225 and session['total_moves'] <= 0 %}
                 <a href="/reset" class="btn btn-danger d-flex col-6 justify-content-center">Game Over !!! Play Again?</a>
             {% endif %}
             {% if session['gold'] < 225 and session['total_moves'] <= 0 %}
@@ -82,6 +82,10 @@
             {% endfor %}
         </div>
         <!-- End of Activity Log -->
+        <!-- Game Instructions -->
+        <h4 class="game_rules">Game Instructions</h4>
+        <p class="game_rules_text">Score 225 gold in 15 moves or less to win.</p>
+        <!-- End of Game Instructions -->
     </div>
     <!-- End of Container -->
 </body>
