@@ -15,6 +15,7 @@
     <div class="container">
         <h1 class="header text-center">Ninja Gold</h1>
         <h4 class="gold_counter">Your Gold: {{session.gold}}</h4>
+        <h4 class="gold_counter">Number of Moves: {{session.total_moves}}</h4>
         <!-- Main Row -->
         <div class="d-flex justify-content-between">
             <!-- Cards -->
@@ -53,8 +54,20 @@
             <!-- End of Cards -->
         </div>
         <!-- End of Main Row -->
-        <a href="/reset" class="btn btn-warning d-flex col-6 justify-content-center">Play Again</a>
-        <h4>Activities:</h4>
+        <!-- Container for Winning/Losing and reseting the game -->
+        <div class="pop_up_contianer col-12">
+            {% if session['gold'] > 200 and session['total_moves'] >= 1 %}
+                <a href="/reset" class="btn btn-success d-flex col-6 justify-content-center">Winner !!! Play Again?</a>
+            {% endif %}
+            {% if session['gold'] > 200 and session['total_moves'] <= 0 %}
+                <a href="/reset" class="btn btn-danger d-flex col-6 justify-content-center">Game Over !!! Play Again?</a>
+            {% endif %}
+            {% if session['gold'] < 00 and session['total_moves'] <= 0 %}
+                <a href="/reset" class="btn btn-danger d-flex col-6 justify-content-center">Game Over !!! Play Again?</a>
+            {% endif %}
+        </div>
+        <!-- End of Container for Winning/Losing and reseting the game -->
+        <h4>Activities</h4>
         <!-- Activity Log -->
         <div class="activity col-12">
             {% for gold in session.gold_won | reverse %}

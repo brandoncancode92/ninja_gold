@@ -12,7 +12,7 @@ app.secret_key = "Loki"
 def index():
     if 'gold' and 'total_moves' and 'gold_won' not in session:
         session['gold'] = 0
-        session['total_moves'] = 0
+        session['total_moves'] = 15
         session['gold_won'] = []
     return render_template("index.html")
 
@@ -20,10 +20,29 @@ def index():
 @app.route('/process_gold', methods=["POST"])
 def process_gold():
     # Adds gold earned to session
-    if request.form['property'] in ('farm', 'cave', 'house'):
+    moves = 1
+    if request.form['property'] == 'farm':
         winnings = random.randint(10, 20)
         session['gold'] += winnings
         session['gold_won'].append(winnings)
+        session['total_moves'] -= moves
+        print(session['total_moves'])
+        return redirect('/')
+
+    elif request.form['property'] == 'cave':
+        winnings = random.randint(5, 10)
+        session['gold'] += winnings
+        session['gold_won'].append(winnings)
+        session['total_moves'] -= moves
+        print(session['total_moves'])
+        return redirect('/')
+
+    elif request.form['property'] == 'house':
+        winnings = random.randint(2, 5)
+        session['gold'] += winnings
+        session['gold_won'].append(winnings)
+        session['total_moves'] -= moves
+        print(session['total_moves'])
         return redirect('/')
 
     # Adds gold earned/lost to session
@@ -32,37 +51,15 @@ def process_gold():
         if winnings < 0:
             session['gold'] += winnings
             session['gold_won'].append(winnings)
+            session['total_moves'] -= moves
+            print(session['total_moves'])
         else:
             session['gold'] += winnings
             session['gold_won'].append(winnings)
+            session['total_moves'] -= moves
+            print(session['total_moves'])
         return redirect('/')
 
-
-
-# Route for keeping track of the moves and winning the game.
-@app.route('/win_game', methods=["POST"])
-def win_game():
-    winning_gold = 500
-    winning_moves = 15
-    moves = 1
-    if 'farm' == request.form['property'] or 'cave' == request.form['property'] or 'house' == request.form['property'] or 'casino' == request.form['property']:
-        session['total_moves'] += moves
-
-    if session['gold'] >= winning_gold and session['total_moves'] <= winning_moves:
-        pass # Winner
-        return redirect('/')
-
-    elif session['gold'] >= winning_gold and session['total_moves'] >= winning_moves:
-        pass # Game Over
-
-    elif session['gold'] <= winning_gold and session['total_moves'] >= winning_moves:
-        pass # Game Over
-
-    elif session['gold'] <= winning_gold and session['total_moves'] <= winning_moves:
-        pass # Continue Playing
-    else:
-        pass
-        return redirect('/')
 
 # Route for reseting session/game.
 @app.route('/reset')
@@ -74,6 +71,9 @@ def reset():
 if __name__=='__main__':
     app.run(debug=True, host='localhost', port=5001)
 
-# change the color of the activity log based on positive or negative gold earned(Done).
-# list the activity log in descending order(Done).
-# limit the number of moves and set the score that has to be reached to win the game.
+# Reduce the number of conditional statments in server to less than 4.
+# Change the color of the activity log based on positive or negative gold earned.(Done)
+# List the activity log in descending order.(Done)
+# Limit the number of moves and set the score that has to be reached to win the game.(Done)
+# Display the Winner/Loser reset buttons based on winning or losing the game.(Done)
+# Make the game look better with bootstrap and css.
