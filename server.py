@@ -43,9 +43,6 @@ def process_gold():
     # Subtract one move from the user's total_moves
     session['total_moves'] -= moves
 
-    # Print the user's total_moves
-    print(session['total_moves'])
-
     # Redirect the user to the home page
     return redirect('/')
 
