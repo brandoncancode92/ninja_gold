@@ -6,65 +6,25 @@
 
 /* Page body */
 body {
-    background-color: black;
+    background-image: linear-gradient(red, yellow);
 }
 
-/* Header */
-.header {
-    margin: 20px 0px;
-    font-family: sans-serif;
-    color: red;
+/* title */
+.title_txt {
+    text-shadow: 1px 1px gold;
+    font-size: 50px;
 }
 
-/* Counters */
-.gold_counter,
-.moves_counter {
-    color: teal;
-}
-
-/* Gold Descripition */
-.gold_parameters {
-    font-family: sans-serif;
-}
-
-/* Cards */
-.cards {
-    margin: 10px 0px;
-    padding: 10px;
-    text-align: center;
-    background-color: gray;
-}
-
-/* Find gold buttons */
-.find_gold_btns{
-    font-size: large;
-    padding: 5px;
-    background-color: rebeccapurple;
-    border: 2px solid black;
-    box-shadow: 3px 3px black;
-    font-family: sans-serif;
-}
-
-/* Play again button */
-.btn {
-    font-size: larger;
-    margin-top: 20px;
-    border: 2px solid black;
-    box-shadow: 3px 3px black;
-}
-
-/* Activites header */
-h4 {
-    margin: 10px 0px;
-    color: teal;
+/* Card Shadows */
+.card_shadow {
+    box-shadow: 4px 4px black;
 }
 
 /* Activity response box */
 .activity {
     height: 200px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     background-color: white;
-    border: 2px solid gray;
 }
 
 /* Displays green text in activity log */
@@ -76,11 +36,5 @@ h4 {
 /* Displays red text in activity log */
 .lost {
     font-size: x-large;
-    color: red;
-}
-
-.game_rules,
-.game_rules_text {
-    font-family: sans-serif;
-    color: teal;
+    color: darkred;
 }
